@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>عطور الجنوب — Southern Perfumes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800&family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
+  <style>
+    /* ════════════════════════════════════
+       ROOT VARIABLES — brand colours
+    ════════════════════════════════════ */
+    :root {
+  --gold:      #c9a84c;
+  --gold-lt:   #e6c878;
+  --gold-dim:  #a07828;
+
+  --black:     #f9f9f9;
+  --dark:      #ffffff;
+  --dark2:     #f5f5f5;
+  --dark3:     #eeeeee;
+
+  --white:     #111111;
+
+  --text:      #222222;
+  --text-mid:  #555555;
+  --text-dim:  #777777;
+
+  --border:    rgba(0,0,0,0.08);
+  --border-lt: rgba(0,0,0,0.05);
+}
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+    background: var(--black);
+    color: var(--text);
+    }
+
+    /* ════ HEADER ════ */
+    header {
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      height:72px; padding:0 32px;
+      display:flex; align-items:center; justify-content:space-between;
+      background:rgba(0,0,0,0.96);
+      border-bottom:1px solid var(--border);
+      backdrop-filter:blur(10px);
+    }
+    .header-logo { display:flex; align-items:center; gap:12px; text-decoration:none; }
+    .header-logo-text { text-align:right; }
+    .header-logo-ar {
+      font-family:'Amiri',serif; font-size:1.25rem; font-weight:700;
+      color:var(--gold-lt); display:block; line-height:1.1;
+    }
+    .header-logo-en {
+      font-size:0.5rem; letter-spacing:0.3em;
+      color:var(--text-dim); text-transform:uppercase; display:block;
+    }
+    nav { display:flex; gap:28px; align-items:center; }
+    nav a { font-size:0.8rem; font-weight:400; color:var(--text-dim); text-decoration:none; transition:color 0.3s; }
+    nav a:hover { color:var(--gold-lt); }
+    .header-btns { display:flex; gap:8px; }
+    .hbtn {
+      display:flex; align-items:center; gap:6px;
+      padding:8px 14px; border-radius:2px; border:1px solid var(--border);
+      text-decoration:none; font-size:0.72rem;
+      font-family:'Tajawal',sans-serif; font-weight:400;
+      transition:all 0.3s; cursor:pointer; background:transparent; white-space:nowrap;
+    }
+    .hbtn svg { width:13px; height:13px; flex-shrink:0; }
+    .hbtn-wa { color:#25d366; border-color:rgba(37,211,102,0.22); }
+    .hbtn-wa:hover { background:rgba(37,211,102,0.08); border-color:rgba(37,211,102,0.5); }
+    .hbtn-fb { color:#7898e0; border-color:rgba(120,152,224,0.22); }
+    .hbtn-fb:hover { background:rgba(120,152,224,0.08); border-color:rgba(120,152,224,0.5); }
+
+    /* ════ HERO ════ */
+    .hero {
+      min-height:100vh; display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      text-align:center; padding:100px 32px 70px; position:relative; overflow:hidden;
+    }
+    .hero::before {
+      content:''; position:absolute; inset:0;
+      background:
+        radial-gradient(ellipse 65% 50% at 50% 45%, rgba(201,168,76,0.07) 0%, transparent 65%),
+        radial-gradient(ellipse 30% 30% at 80% 15%, rgba(201,168,76,0.04) 0%, transparent 55%);
+    }
+    .hero::after {
+      content:''; position:absolute; top:100px; right:40px;
+      width:80px; height:80px;
+      border-top:1px solid rgba(201,168,76,0.15); border-right:1px solid rgba(201,168,76,0.15);
+    }
+    .hero-corner-bl {
+      position:absolute; bottom:60px; left:40px;
+      width:80px; height:80px;
+      border-bottom:1px solid rgba(201,168,76,0.15); border-left:1px solid rgba(201,168,76,0.15);
+    }
+    .hero-logo-svg {
+      width:140px; height:140px; margin:0 auto 32px;
+      animation:fadeUp 0.8s ease both;
+      filter:drop-shadow(0 0 30px rgba(201,168,76,0.2));
+    }
+    .hero-tag {
+      font-size:0.62rem; letter-spacing:0.5em;
+      color:var(--gold-dim); margin-bottom:16px;
+      animation:fadeUp 0.8s 0.15s ease both; position:relative;
+    }
+    .hero h1 {
+      font-family:'Amiri',serif;
+      font-size:clamp(3.8rem,9vw,7.5rem); font-weight:700;
+      color:var(--gold-lt); line-height:1; position:relative;
+      animation:fadeUp 0.8s 0.25s ease both;
+      text-shadow:0 0 60px rgba(201,168,76,0.2);
+    }
+    .hero-en {
+      font-size:clamp(0.7rem,2vw,1rem); letter-spacing:0.5em;
+      color:var(--text-dim); text-transform:uppercase; margin-top:10px;
+      animation:fadeUp 0.8s 0.35s ease both; position:relative;
+      display:flex; align-items:center; justify-content:center; gap:16px;
+    }
+    .hero-en::before,.hero-en::after {
+      content:''; display:inline-block; width:40px; height:1px;
+      background:var(--gold-dim); opacity:0.5;
+    }
+    .hero-tagline {
+      margin-top:24px; font-size:0.9rem; color:var(--text-dim);
+      line-height:2; font-weight:300; max-width:400px;
+      animation:fadeUp 0.8s 0.45s ease both; position:relative;
+    }
+    .hero-divider {
+      display:flex; align-items:center; gap:12px;
+      margin:28px auto; animation:fadeUp 0.8s 0.55s ease both;
+    }
+    .hero-divider::before,.hero-divider::after {
+      content:''; flex:1; max-width:70px; height:1px;
+      background:linear-gradient(to left,transparent,var(--gold)); opacity:0.35;
+    }
+    .hero-divider::after { background:linear-gradient(to right,transparent,var(--gold)); }
+    .hero-divider span { color:var(--gold); font-size:0.9rem; opacity:0.5; }
+    .btn-hero {
+      display:inline-block; padding:14px 44px;
+      border:1px solid var(--gold); color:var(--gold-lt);
+      text-decoration:none; font-size:0.9rem;
+      font-family:'Tajawal',sans-serif; font-weight:500;
+      letter-spacing:0.08em; transition:all 0.4s;
+      position:relative; overflow:hidden; cursor:pointer;
+      background:transparent; border-radius:2px;
+      animation:fadeUp 0.8s 0.62s ease both;
+    }
+    .btn-hero::before {
+      content:''; position:absolute; inset:0;
+      background:linear-gradient(135deg,var(--gold),var(--gold-dim));
+      transform:scaleX(0); transform-origin:right;
+      transition:transform 0.4s; z-index:-1;
+    }
+    .btn-hero:hover { color:var(--black); }
+    .btn-hero:hover::before { transform:scaleX(1); }
+
+    /* ════ MARQUEE ════ */
+    .marquee-strip {
+      border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+      background:var(--dark2); padding:12px 0; overflow:hidden; white-space:nowrap;
+    }
+    .marquee-inner {
+      display:inline-block; animation:marquee 22s linear infinite;
+      font-size:0.65rem; letter-spacing:0.3em; color:var(--gold-dim); text-transform:uppercase;
+    }
+    .marquee-inner span { margin:0 24px; }
+    .marquee-inner .dot { color:var(--gold); opacity:0.5; margin:0 12px; }
+
+    /* ════ SEARCH & FILTER ════ */
+    #collection { position:relative; z-index:1; background:var(--dark); }
+    .search-section { padding:52px 32px 28px; max-width:1200px; margin:0 auto; }
+    .section-title {
+      font-family:'Amiri',serif; font-size:2rem;
+      color:var(--gold-lt); margin-bottom:24px;
+      display:flex; align-items:center; gap:14px; justify-content:flex-end;
+    }
+    .section-title::before {
+      content:''; flex:1; max-width:60px;
+      height:1px; background:var(--gold); opacity:0.3;
+    }
+    .search-wrap { position:relative; margin-bottom:20px; }
+    .search-icon {
+      position:absolute; right:18px; top:50%;
+      transform:translateY(-50%); color:var(--gold);
+      font-size:1rem; opacity:0.5; pointer-events:none;
+    }
+    #searchInput {
+      width:100%; padding:16px 50px 16px 18px;
+      background:var(--dark2); border:1px solid var(--border);
+      color:var(--gold-pale); font-family:'Tajawal',sans-serif;
+      font-size:0.92rem; font-weight:300;
+      outline:none; border-radius:3px; transition:border-color 0.3s; text-align:right;
+    }
+    #searchInput::placeholder { color:var(--text-dim); }
+    #searchInput:focus { border-color:var(--gold); box-shadow:0 0 0 3px rgba(201,168,76,0.07); }
+    .categories { display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+    .cat-btn {
+      padding:7px 16px; border:1px solid var(--border);
+      background:transparent; color:var(--text-dim);
+      font-family:'Tajawal',sans-serif; font-size:0.78rem; font-weight:400;
+      cursor:pointer; transition:all 0.28s; border-radius:2px;
+    }
+    .cat-btn:hover { border-color:var(--gold-dim); color:var(--gold); }
+    .cat-btn.active { background:var(--gold); border-color:var(--gold); color:var(--black); font-weight:700; }
+
+    /* ════ GRID HEADER ════ */
+    .grid-header {
+      padding:0 32px 18px; max-width:1200px; margin:0 auto;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    #resultCount { font-size:0.7rem; color:var(--text-dim); font-weight:300; }
+    .grid-label {
+      font-size:0.6rem; letter-spacing:0.35em;
+      text-transform:uppercase; color:var(--gold-dim);
+      display:flex; align-items:center; gap:10px;
+    }
+    .grid-label::after {
+      content:''; display:inline-block; width:28px; height:1px;
+      background:var(--gold); opacity:0.3;
+    }
+
+    /* ════ PRODUCTS GRID ════ */
+    .products-grid {
+      display:grid; grid-template-columns:repeat(auto-fill,minmax(272px,1fr));
+      gap:18px; padding:0 32px 80px; max-width:1200px; margin:0 auto;
+    }
+    .product-card {
+      background:var(--dark2); border:1px solid var(--border-lt);
+      border-radius:3px; overflow:hidden;
+      transition:transform 0.38s,box-shadow 0.38s,border-color 0.38s;
+      animation:fadeUp 0.5s ease both;
+    }
+    .product-card:hover {
+      transform:translateY(-6px);
+      box-shadow:0 18px 55px rgba(0,0,0,0.7),0 0 0 1px rgba(201,168,76,0.22);
+      border-color:rgba(201,168,76,0.3);
+    }
+    .card-topline { height:2px; background:linear-gradient(to left,transparent,var(--gold),transparent); }
+    .card-visual {
+      width:100%; height:200px;
+      background:linear-gradient(160deg,var(--dark3) 0%,var(--dark4) 100%);
+      display:flex; align-items:center; justify-content:center;
+      position:relative; overflow:hidden;
+    }
+    /* Real image fills the card */
+    .card-img { width:100%; height:100%; object-fit:cover; display:block; }
+    /* Emoji fallback */
+    .card-emoji-fallback {
+      font-size:4.5rem; width:100%; height:100%;
+      display:flex; align-items:center; justify-content:center;
+    }
+    /* Corner brackets on visual */
+    .card-visual::before {
+      content:''; position:absolute; top:10px; right:10px;
+      width:20px; height:20px;
+      border-top:1px solid rgba(201,168,76,0.25); border-right:1px solid rgba(201,168,76,0.25);
+    }
+    .card-visual::after {
+      content:''; position:absolute; bottom:10px; left:10px;
+      width:20px; height:20px;
+      border-bottom:1px solid rgba(201,168,76,0.25); border-left:1px solid rgba(201,168,76,0.25);
+    }
+    .card-body { padding:16px 18px 18px; }
+    .card-cat {
+      font-size:0.58rem; letter-spacing:0.22em; color:var(--gold);
+      margin-bottom:5px; font-weight:500;
+      display:flex; align-items:center; justify-content:flex-end; gap:6px;
+    }
+    .card-cat::before {
+      content:''; display:inline-block; width:16px; height:1px;
+      background:var(--gold); opacity:0.4;
+    }
+    .card-name { font-family:'Amiri',serif; font-size:1.45rem; color:var(--gold-pale); margin-bottom:3px; line-height:1.2; }
+    .card-brand { font-size:0.72rem; color:var(--text-dim); font-style:italic; margin-bottom:10px; }
+    .card-desc { font-size:0.78rem; color:var(--text-dim); line-height:1.85; margin-bottom:14px; font-weight:300; }
+    .card-footer {
+      display:flex; align-items:center; justify-content:space-between;
+      border-top:1px solid var(--border-lt); padding-top:12px;
+    }
+    .card-price-wrap { text-align:right; }
+    .card-price { font-family:'Amiri',serif; font-size:1.45rem; color:var(--gold-lt); line-height:1.1; }
+    .card-size { font-size:0.62rem; color:var(--text-dim); }
+    .card-actions { display:flex; gap:6px; }
+    .card-wa {
+      display:flex; align-items:center; gap:5px;
+      padding:7px 12px; background:rgba(37,211,102,0.08);
+      border:1px solid rgba(37,211,102,0.2); color:#25d366;
+      font-size:0.62rem; font-family:'Tajawal',sans-serif;
+      border-radius:2px; text-decoration:none; transition:all 0.3s; white-space:nowrap;
+    }
+    .card-wa:hover { background:rgba(37,211,102,0.16); }
+
+    /* ════ EMPTY STATE ════ */
+    .empty-state { grid-column:1/-1; text-align:center; padding:90px 20px; }
+    .empty-state .icon { font-size:3rem; margin-bottom:14px; opacity:0.2; }
+    .empty-state p { color:var(--text-dim); font-size:0.9rem; }
+
+    /* ════ CONTACT ════ */
+    #contact {
+      background:var(--dark2); border-top:1px solid var(--border);
+      padding:68px 32px; text-align:center; position:relative; overflow:hidden;
+    }
+    #contact::before {
+      content:''; position:absolute; inset:0;
+      background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(201,168,76,0.04) 0%,transparent 70%);
+    }
+    .contact-ornament { font-size:0.55rem; letter-spacing:0.8em; color:var(--gold); opacity:0.25; margin-bottom:28px; }
+    .contact-logo { width:80px; height:80px; margin:0 auto 20px; opacity:0.85; }
+    #contact h2 { font-family:'Amiri',serif; font-size:2.4rem; color:var(--gold-pale); margin-bottom:8px; position:relative; }
+    #contact p { color:var(--text-dim); font-size:0.85rem; line-height:2; margin-bottom:10px; position:relative; font-weight:300; }
+    .contact-phone { font-size:1.2rem; color:var(--gold-lt); font-family:'Amiri',serif; margin-bottom:32px; position:relative; }
+    .contact-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+    .cta-btn {
+      display:flex; align-items:center; gap:10px; padding:15px 32px;
+      border-radius:3px; text-decoration:none; font-size:0.88rem;
+      font-family:'Tajawal',sans-serif; font-weight:500;
+      transition:all 0.3s; border:1px solid transparent; position:relative;
+    }
+    .cta-btn svg { width:20px; height:20px; flex-shrink:0; }
+    .cta-wa { background:rgba(37,211,102,0.1); color:#25d366; border-color:rgba(37,211,102,0.25); }
+    .cta-wa:hover { background:rgba(37,211,102,0.18); }
+    .cta-fb { background:rgba(120,152,224,0.1); color:#7898e0; border-color:rgba(120,152,224,0.25); }
+    .cta-fb:hover { background:rgba(120,152,224,0.18); }
+
+    /* ════ FOOTER ════ */
+    footer {
+      background:var(--black); border-top:1px solid var(--border-lt);
+      text-align:center; padding:24px 32px;
+      font-size:0.65rem; color:var(--text-dim); letter-spacing:0.1em;
+    }
+    footer .g { color:var(--gold); }
+
+    /* ════ FAB ════ */
+    .fab {
+      position:fixed; bottom:32px; left:32px;
+      width:56px; height:56px;
+      background:linear-gradient(135deg,var(--gold-lt),var(--gold));
+      color:var(--black); border:none; border-radius:50%;
+      font-size:1.6rem; cursor:pointer; z-index:150;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 6px 28px rgba(201,168,76,0.45);
+      transition:all 0.32s; line-height:1;
+    }
+    .fab:hover { transform:scale(1.12) rotate(90deg); box-shadow:0 10px 38px rgba(201,168,76,0.65); }
+
+    /* ════ MODAL ════ */
+    .modal-overlay {
+      position:fixed; inset:0; background:rgba(0,0,0,0.92);
+      backdrop-filter:blur(10px); z-index:200;
+      display:flex; align-items:center; justify-content:center;
+      padding:20px; opacity:0; pointer-events:none; transition:opacity 0.32s;
+    }
+    .modal-overlay.open { opacity:1; pointer-events:all; }
+    .modal {
+      background:var(--dark2); border:1px solid var(--border); border-radius:5px;
+      width:100%; max-width:520px; padding:36px;
+      transform:translateY(24px); transition:transform 0.32s;
+      position:relative; max-height:90vh; overflow-y:auto;
+    }
+    .modal-overlay.open .modal { transform:translateY(0); }
+    .modal::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:2px;
+      background:linear-gradient(to right,transparent,var(--gold-lt),transparent);
+      border-radius:5px 5px 0 0;
+    }
+    .modal-close {
+      position:absolute; top:14px; left:16px;
+      background:none; border:none; color:var(--text-dim);
+      font-size:1.3rem; cursor:pointer; transition:color 0.3s; line-height:1; padding:4px;
+    }
+    .modal-close:hover { color:var(--gold-lt); }
+    .modal-tag { font-size:0.62rem; letter-spacing:0.28em; color:var(--gold-dim); margin-bottom:4px; font-weight:500; text-align:right; }
+    .modal-title { font-family:'Amiri',serif; font-size:1.85rem; color:var(--gold-pale); margin-bottom:24px; text-align:right; }
+    .emoji-preview { font-size:3rem; text-align:center; padding:14px; background:var(--dark3); border-radius:3px; margin-bottom:16px; }
+    .form-group { margin-bottom:14px; }
+    .form-label { display:block; font-size:0.62rem; letter-spacing:0.2em; color:var(--text-dim); margin-bottom:6px; font-weight:400; text-align:right; }
+    .form-input,.form-select,.form-textarea {
+      width:100%; padding:12px 14px; background:var(--dark3);
+      border:1px solid var(--border); color:var(--gold-pale);
+      font-family:'Tajawal',sans-serif; font-size:0.88rem; font-weight:300;
+      outline:none; border-radius:3px; transition:border-color 0.3s; text-align:right;
+    }
+    .form-input::placeholder,.form-textarea::placeholder { color:var(--text-dim); }
+    .form-input:focus,.form-select:focus,.form-textarea:focus { border-color:var(--gold); box-shadow:0 0 0 3px rgba(201,168,76,0.06); }
+    .form-select { cursor:pointer; }
+    .form-textarea { resize:vertical; min-height:80px; }
+    option { background:var(--dark2); }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .btn-save {
+      width:100%; padding:14px; margin-top:10px;
+      background:linear-gradient(135deg,var(--gold-lt),var(--gold));
+      color:var(--black); border:none; border-radius:3px;
+      font-family:'Tajawal',sans-serif; font-size:0.92rem; font-weight:700;
+      cursor:pointer; letter-spacing:0.06em; transition:all 0.3s;
+    }
+    .btn-save:hover { filter:brightness(1.1); box-shadow:0 6px 24px rgba(201,168,76,0.35); }
+
+    /* ════ SCROLLBAR ════ */
+    ::-webkit-scrollbar { width:4px; }
+    ::-webkit-scrollbar-track { background:var(--black); }
+    ::-webkit-scrollbar-thumb { background:var(--gold-dim); border-radius:4px; }
+
+    /* ════ ANIMATIONS ════ */
+    @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* ════ MOBILE ════ */
+    @media(max-width:768px){
+      header { padding:0 16px; height:64px; }
+      nav { display:none; }
+      .hero { padding:84px 20px 56px; }
+      .hero-logo-svg { width:100px; height:100px; }
+      .search-section { padding:40px 18px 20px; }
+      .products-grid { padding:0 18px 60px; grid-template-columns:1fr; }
+      .grid-header { padding:0 18px 16px; }
+      .modal { padding:26px 18px; }
+      .form-row { grid-template-columns:1fr; }
+      .fab { bottom:20px; left:20px; width:50px; height:50px; font-size:1.4rem; }
+      #contact { padding:52px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════ HEADER ════════ -->
+<header>
+  <div class="header-btns">
+    <a class="hbtn hbtn-wa js-wa-link" href="#" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      واتساب
+    </a>
+    <a class="hbtn hbtn-fb js-fb-link" href="#" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      فيسبوك
+    </a>
+  </div>
+  <nav>
+    <a href="#contact">تواصل</a>
+    <a href="#collection">العطور</a>
+  </nav>
+  <a class="header-logo" href="#home">
+    <div class="header-logo-text">
+      <span class="header-logo-ar">عطور الجنوب</span>
+      <span class="header-logo-en">Southern Perfumes</span>
+    </div>
+    <svg class="logo-svg" width="54" height="54" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <rect x="38" y="4" width="24" height="10" rx="2" fill="none" stroke="#c9a84c" stroke-width="2.2"/>
+      <rect x="42" y="9" width="16" height="5" rx="1" fill="none" stroke="#c9a84c" stroke-width="1.5"/>
+      <ellipse cx="50" cy="58" rx="36" ry="36" fill="none" stroke="#c9a84c" stroke-width="2.2"/>
+      <ellipse cx="50" cy="58" rx="28" ry="28" fill="none" stroke="#c9a84c" stroke-width="1.2" opacity="0.6"/>
+      <path d="M60 42 Q62 38 57 36 Q48 33 43 40 Q38 47 46 51 Q54 55 55 60 Q57 68 50 70 Q43 72 38 67 Q35 63 38 59" fill="none" stroke="#c9a84c" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M44 70 Q48 74 54 71" fill="none" stroke="#c9a84c" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+    </svg>
+  </a>
+</header>
+
+<!-- ════════ HERO ════════ -->
+<section class="hero" id="home">
+  <div class="hero-corner-bl"></div>
+  <svg class="hero-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="38" y="4" width="24" height="10" rx="2" fill="none" stroke="#c9a84c" stroke-width="2.2"/>
+    <rect x="42" y="9" width="16" height="5" rx="1" fill="none" stroke="#c9a84c" stroke-width="1.5"/>
+    <ellipse cx="50" cy="58" rx="36" ry="36" fill="none" stroke="#c9a84c" stroke-width="2.2"/>
+    <ellipse cx="50" cy="58" rx="28" ry="28" fill="none" stroke="#c9a84c" stroke-width="1.2" opacity="0.5"/>
+    <ellipse cx="50" cy="58" rx="20" ry="20" fill="none" stroke="#c9a84c" stroke-width="0.7" opacity="0.25"/>
+    <path d="M60 42 Q62 38 57 36 Q48 33 43 40 Q38 47 46 51 Q54 55 55 60 Q57 68 50 70 Q43 72 38 67 Q35 63 38 59" fill="none" stroke="#c9a84c" stroke-width="3.8" stroke-linecap="round"/>
+    <path d="M44 70 Q48 74 54 71" fill="none" stroke="#c9a84c" stroke-width="2.2" stroke-linecap="round" opacity="0.7"/>
+  </svg>
+  <p class="hero-tag">✦ &nbsp; أجود العطور الشرقية والعالمية &nbsp; ✦</p>
+  <h1>عطور الجنوب</h1>
+  <p class="hero-en">Southern Perfumes</p>
+  <p class="hero-tagline">نقدّم لكم أرقى وأفخم العطور الشرقية والغربية<br/>عود · مسك · عنبر · بخور · زيوت فاخرة</p>
+  <div class="hero-divider"><span>◆</span></div>
+  <a class="btn-hero" href="#collection">تصفّح المجموعة</a>
+</section>
+
+<!-- ════════ MARQUEE ════════ -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span>عطور الجنوب</span><span class="dot">◆</span>
+    <span>Southern Perfumes</span><span class="dot">◆</span>
+    <span>عود فاخر</span><span class="dot">◆</span>
+    <span>مسك طبيعي</span><span class="dot">◆</span>
+    <span>بخور شرقي</span><span class="dot">◆</span>
+    <span>عنبر أصيل</span><span class="dot">◆</span>
+    <span>القاهرة — مصر</span><span class="dot">◆</span>
+    <span>عطور الجنوب</span><span class="dot">◆</span>
+    <span>Southern Perfumes</span><span class="dot">◆</span>
+    <span>عود فاخر</span><span class="dot">◆</span>
+    <span>مسك طبيعي</span><span class="dot">◆</span>
+    <span>بخور شرقي</span><span class="dot">◆</span>
+    <span>عنبر أصيل</span><span class="dot">◆</span>
+    <span>القاهرة — مصر</span><span class="dot">◆</span>
+  </div>
+</div>
+
+<!-- ════════ COLLECTION ════════ -->
+<section id="collection">
+  <div class="search-section">
+    <div class="section-title">مجموعة العطور</div>
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="ابحث باسم العطر أو الماركة أو النوع…"/>
+    </div>
+    <!-- Category buttons are built automatically by script.js from products.json -->
+    <div class="categories" id="categoriesBar"></div>
+  </div>
+  <div class="grid-header">
+    <span id="resultCount"></span>
+    <div class="grid-label">Collection</div>
+  </div>
+  <div class="products-grid" id="productsGrid"></div>
+</section>
+
+<!-- ════════ CONTACT ════════ -->
+<div id="contact">
+  <div class="contact-ornament">✦ &nbsp; ✦ &nbsp; ✦ &nbsp; ✦ &nbsp; ✦</div>
+  <svg class="contact-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="38" y="4" width="24" height="10" rx="2" fill="none" stroke="#c9a84c" stroke-width="2.2"/>
+    <rect x="42" y="9" width="16" height="5" rx="1" fill="none" stroke="#c9a84c" stroke-width="1.5"/>
+    <ellipse cx="50" cy="58" rx="36" ry="36" fill="none" stroke="#c9a84c" stroke-width="2.2"/>
+    <ellipse cx="50" cy="58" rx="28" ry="28" fill="none" stroke="#c9a84c" stroke-width="1.2" opacity="0.5"/>
+    <path d="M60 42 Q62 38 57 36 Q48 33 43 40 Q38 47 46 51 Q54 55 55 60 Q57 68 50 70 Q43 72 38 67 Q35 63 38 59" fill="none" stroke="#c9a84c" stroke-width="3.8" stroke-linecap="round"/>
+    <path d="M44 70 Q48 74 54 71" fill="none" stroke="#c9a84c" stroke-width="2.2" stroke-linecap="round" opacity="0.7"/>
+  </svg>
+  <h2>تواصل معنا</h2>
+  <p>هل تريد معرفة المزيد عن عطر معين؟<br/>فريقنا مستعد للمساعدة في اختيار العطر المناسب لك</p>
+  <div class="contact-phone">📞 01141910181</div>
+  <div class="contact-btns">
+    <a class="cta-btn cta-wa js-wa-link" href="#" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      تواصل عبر الواتساب
+    </a>
+    <a class="cta-btn cta-fb js-fb-link" href="#" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      زيارة صفحة الفيسبوك
+    </a>
+  </div>
+</div>
+
+<!-- ════════ FOOTER ════════ -->
+<footer>
+  © 2024 &nbsp;<span class="g">عطور الجنوب — Southern Perfumes</span>&nbsp; · القاهرة، مصر · جميع الحقوق محفوظة
+</footer>
+
+<!-- ════════ FAB ════════ -->
+<button class="fab" id="fabBtn" title="إضافة عطر جديد">+</button>
+
+<!-- ════════ MODAL ════════ -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <button class="modal-close" id="modalClose">✕</button>
+    <p class="modal-tag">إضافة منتج جديد</p>
+    <h2 class="modal-title">عطر جديد</h2>
+    <div class="emoji-preview" id="emojiPreview">🧴</div>
+
+    <div class="form-group">
+      <label class="form-label">أيقونة / إيموجي (اختياري)</label>
+      <input class="form-input" id="fEmoji" type="text" placeholder="مثال: 🌹 🍂 🌊 💎" maxlength="4"/>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">اسم العطر *</label>
+        <input class="form-input" id="fName" type="text" placeholder="مثال: ليلة القاهرة"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">الماركة</label>
+        <input class="form-input" id="fBrand" type="text" placeholder="مثال: عطور الجنوب"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">الفئة</label>
+      <select class="form-select" id="fCategory">
+        <option value="عود">عود</option>
+        <option value="مسك">مسك</option>
+        <option value="عنبر">عنبر</option>
+        <option value="بخور">بخور</option>
+        <option value="زيوت">زيوت</option>
+        <option value="شرقي">شرقي</option>
+        <option value="غربي">غربي</option>
+        <option value="رجالي">رجالي</option>
+        <option value="نسائي">نسائي</option>
+        <option value="يونيسكس">يونيسكس</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">السعر</label>
+        <input class="form-input" id="fPrice" type="text" placeholder="مثال: 700 جنيه"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">الحجم</label>
+        <input class="form-input" id="fSize" type="text" placeholder="مثال: 100ml"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">مسار الصورة (اختياري)</label>
+      <input class="form-input" id="fImage" type="text" placeholder="مثال: images/my-perfume.jpg"/>
+    </div>
+    <div class="form-group">
+      <label class="form-label">الوصف والمكونات</label>
+      <textarea class="form-textarea" id="fDesc" placeholder="مثال: عطر شرقي فاخر يجمع بين العود والمسك…"></textarea>
+    </div>
+    <button class="btn-save" id="saveBtn">إضافة إلى المجموعة</button>
+  </div>
+</div>
+
+<!-- ════════ LOAD script.js LAST ════════ -->
+<script src="script.js"></script>
+
+</body>
+</html>

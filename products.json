@@ -1,14 +1,14 @@
 [
   {
     "id": 1,
-    "name": "عود الملوك",
+    "name": "كريد افينتوس",
     "brand": "عطور الجنوب",
     "category": "عود",
-    "size": "100ml",
-    "price": "1700 جنيه",
+    "size": "50ml",
+    "price": "300 جنيه",
     "emoji": "🌑",
     "desc": "عود فاخر ذو رائحة عميقة تجمع بين الدفء الشرقي والأناقة النادرة.",
-    "image": "images/oud-almolouk.jpg"
+    "image": "images/Creed-Aventus.jpg"
   },
   {
     "id": 2,

@@ -1,142 +1,112 @@
 [
   {
+    "id": 1,
     "name": "Creed Aventus",
-    "price": 320,
+    "brand": "كريد",
     "category": "Men",
-    "image": "images/Creed-Aventus.jpg",
-    "desc": "كريد أفينتوس - عطر رجالي فاخر بثبات عالي ولمسة فاكهية خشبية مميزة."
+    "size": "50ml",
+    "price": "320 جنيه",
+    "emoji": "🍏",
+    "desc": "كريد أفينتوس - عطر رجالي فاخر بثبات عالي ولمسة فاكهية خشبية مميزة.",
+    "image": "images/Creed-Aventus.jpg"
   },
   {
+    "id": 2,
     "name": "Ombre Leather",
-    "price": 300,
+    "brand": "زاين",
     "category": "Men",
-    "image": "images/ombre.jpg",
-    "desc": "اومبري ليذر - رائحة جلدية قوية وأنيقة تعطي حضور رجولي جذاب."
+    "size": "50ml",
+    "price": "300 جنيه",
+    "emoji": "🖤",
+    "desc": "اومبري ليذر - رائحة جلدية قوية وأنيقة تعطي حضور رجولي جذاب.",
+    "image": "images/ombre.jpg"
   },
   {
+    "id": 3,
     "name": "Jean Paul Gaultier Ultra Male",
-    "price": 260,
+    "brand": "جان بول غوتييه",
     "category": "Men",
-    "image": "images/ultramale.jpg",
-    "desc": "الترا ميل - عطر شبابي حلو ودافئ مناسب للمساء."
+    "size": "50ml",
+    "price": "260 جنيه",
+    "emoji": "💛",
+    "desc": "الترا ميل - عطر شبابي حلو ودافئ مناسب للمساء.",
+    "image": "images/ultramale.jpg"
   },
   {
+    "id": 4,
     "name": "Versace Eros",
-    "price": 240,
+    "brand": "فرساتشي",
     "category": "Men",
-    "image": "images/eros.jpg",
-    "desc": "ايروس - انتعاش قوي مع لمسة فانيليا جذابة."
+    "size": "50ml",
+    "price": "240 جنيه",
+    "emoji": "💙",
+    "desc": "ايروس - انتعاش قوي مع لمسة فانيليا جذابة.",
+    "image": "images/eros.jpg"
   },
   {
+    "id": 5,
     "name": "Dior Sauvage",
-    "price": 300,
+    "brand": "ديور",
     "category": "Men",
-    "image": "images/sauvage.jpg",
-    "desc": "ديور سوفاج - عطر رجالي شهير برائحة منعشة وقوية."
+    "size": "50ml",
+    "price": "300 جنيه",
+    "emoji": "🖤",
+    "desc": "ديور سوفاج - عطر رجالي شهير برائحة منعشة وقوية.",
+    "image": "images/sauvage.jpg"
   },
   {
+    "id": 6,
     "name": "Bleu de Chanel",
-    "price": 310,
+    "brand": "شانيل",
     "category": "Men",
-    "image": "images/bleu.jpg",
-    "desc": "بلو دي شانيل - كلاسيكي فاخر يناسب جميع الأوقات."
+    "size": "50ml",
+    "price": "310 جنيه",
+    "emoji": "🔵",
+    "desc": "بلو دي شانيل - كلاسيكي فاخر يناسب جميع الأوقات.",
+    "image": "images/bleu.jpg"
   },
   {
+    "id": 7,
     "name": "Black XS",
-    "price": 220,
+    "brand": "كارفن",
     "category": "Men",
-    "image": "images/blackxs.jpg",
-    "desc": "بلاك XS - عطر شبابي جريء بطابع شرقي."
+    "size": "50ml",
+    "price": "220 جنيه",
+    "emoji": "⚫",
+    "desc": "بلاك XS - عطر شبابي جريء بطابع شرقي.",
+    "image": "images/blackxs.jpg"
   },
   {
+    "id": 8,
     "name": "Stronger With You",
-    "price": 290,
+    "brand": "جورجيو أرماني",
     "category": "Men",
-    "image": "images/stronger.jpg",
-    "desc": "سترونجر ويذ يو - عطر دافئ ورومانسي بثبات ممتاز."
+    "size": "50ml",
+    "price": "290 جنيه",
+    "emoji": "💜",
+    "desc": "سترونجر ويذ يو - عطر دافئ ورومانسي بثبات ممتاز.",
+    "image": "images/stronger.jpg"
   },
   {
+    "id": 9,
     "name": "Tobacco Vanille",
-    "price": 330,
+    "brand": "توم فورد",
     "category": "Men",
-    "image": "images/tobacco.jpg",
-    "desc": "توباكو فانيلا - مزيج فاخر من التبغ والفانيليا."
+    "size": "50ml",
+    "price": "330 جنيه",
+    "emoji": "🟤",
+    "desc": "توباكو فانيلا - مزيج فاخر من التبغ والفانيليا.",
+    "image": "images/tobacco.jpg"
   },
   {
+    "id": 10,
     "name": "Black Orchid",
-    "price": 280,
+    "brand": "توم فورد",
     "category": "Men",
-    "image": "images/orchid.jpg",
-    "desc": "بلاك أوركيد - عطر غامض وجذاب بطابع فاخر."
-  },
-  {
-    "name": "Invictus",
-    "price": 260,
-    "category": "Men",
-    "image": "images/invictus.jpg",
-    "desc": "إنفكتوس - انتعاش رياضي مع ثبات جيد."
-  },
-  {
-    "name": "Silver Mountain Water",
-    "price": 300,
-    "category": "Men",
-    "image": "images/silver.jpg",
-    "desc": "سيلفر ماونتن ووتر - عطر منعش ونظيف برائحة جبلية."
-  },
-  {
-    "name": "Interlude",
-    "price": 350,
-    "category": "Men",
-    "image": "images/interlude.jpg",
-    "desc": "إنترلود - عطر شرقي ثقيل لمحبي الروائح القوية."
-  },
-  {
-    "name": "Oud Royal",
-    "price": 340,
-    "category": "Men",
-    "image": "images/oudroyal.jpg",
-    "desc": "عود رويال - عود فاخر بثبات عالي جداً."
-  },
-  {
-    "name": "Red Tobacco",
-    "price": 320,
-    "category": "Men",
-    "image": "images/redtobacco.jpg",
-    "desc": "ريد توباكو - رائحة قوية وحارة لمحبي التميز."
-  },
-  {
-    "name": "1 Million",
-    "price": 250,
-    "category": "Men",
-    "image": "images/1million.jpg",
-    "desc": "وان مليون - عطر مشهور بطابع حلو وجذاب."
-  },
-  {
-    "name": "212 VIP",
-    "price": 260,
-    "category": "Men",
-    "image": "images/212vip.jpg",
-    "desc": "212 في آي بي - مناسب للسهرات والأجواء الشبابية."
-  },
-  {
-    "name": "Hugo Boss",
-    "price": 230,
-    "category": "Men",
-    "image": "images/hugo.jpg",
-    "desc": "هوجو بوس - عطر يومي منعش وأنيق."
-  },
-  {
-    "name": "Cool Water",
-    "price": 210,
-    "category": "Men",
-    "image": "images/coolwater.jpg",
-    "desc": "كول ووتر - انتعاش بحري كلاسيكي."
-  },
-  {
-    "name": "Oud Collection",
-    "price": 300,
-    "category": "Men",
-    "image": "images/oud.jpg",
-    "desc": "مجموعة العود - روائح عود شرقية مميزة."
+    "size": "50ml",
+    "price": "280 جنيه",
+    "emoji": "⚫",
+    "desc": "بلاك أوركيد - عطر غامض وجذاب بطابع فاخر.",
+    "image": "images/orchid.jpg"
   }
 ]

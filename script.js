@@ -9,6 +9,9 @@ const FACEBOOK_URL    = "https://www.facebook.com/people/%D8%B9%D8%B7%D9%88%D8%B
 
 const WA_BASE = `https://wa.me/${WHATSAPP_NUMBER}?text=`;
 
+let visibleCount = 20; // عدد المنتجات اللي تظهر في البداية
+const LOAD_STEP = 10;  // كل مرة نزود كام منتج
+
 // ── STATE ──
 let allProducts   = [];
 let activeCategory = "الكل";
@@ -53,7 +56,7 @@ fetch("products.json")
   .then(data => {
     allProducts = data;
     buildCategoryButtons(data);
-    renderProducts(data);
+    renderProducts(data, true);
   })
   .catch(err => {
     console.error("Error loading products:", err);
@@ -108,76 +111,90 @@ function applyFilters() {
     );
   }
 
-  renderProducts(filtered);
+  renderProducts(filtered, true);
 }
 
 // ══════════════════════════════════════════════
 //  RENDER
 // ══════════════════════════════════════════════
-function renderProducts(products) {
+function renderProducts(products, reset = false) {
   const grid    = document.getElementById("productsGrid");
   const countEl = document.getElementById("resultCount");
 
-  countEl.textContent = products.length ? `${products.length} عطر` : "";
+  if (reset) visibleCount = 6;
 
-  if (!products.length) {
+  countEl.textContent = products.length > 0 ? `${products.length} عطر` : "";
+
+  if (products.length === 0) {
     grid.innerHTML = `
       <div class="empty-state">
         <div class="icon">🔍</div>
-        <p>لا توجد نتائج</p>
+        <p>لا توجد نتائج. جرّب البحث بكلمة مختلفة.</p>
       </div>`;
     return;
   }
 
-  grid.innerHTML = products.map((p, i) => {
+  const visibleProducts = products.slice(0, visibleCount);
+
+  grid.innerHTML = visibleProducts.map((p, i) => {
     const waMsg  = encodeURIComponent(`السلام عليكم، أريد الاستفسار عن: ${p.name} 🌹`);
     const waLink = WA_BASE + waMsg;
 
     const visual = p.image
       ? `
         <div class="img-placeholder"></div>
-
-        <img 
-          data-src="${p.image}" 
-          alt="${p.name}" 
-          class="card-img lazy-img"
-        />
-
+        <img data-src="${p.image}" alt="${p.name}" class="card-img lazy-img"/>
         <div class="card-emoji-fallback" style="display:none">
           ${p.emoji || "🧴"}
-        </div>
-      `
+        </div>`
       : `<div class="card-emoji-fallback">${p.emoji || "🧴"}</div>`;
 
     return `
       <div class="product-card" style="animation-delay:${i * 0.06}s">
         <div class="card-topline"></div>
         <div class="card-visual">${visual}</div>
-
         <div class="card-body">
           <div class="card-cat">${p.category}</div>
           <div class="card-name">${p.name}</div>
           ${p.brand ? `<div class="card-brand">${p.brand}</div>` : ""}
           ${p.desc  ? `<div class="card-desc">${p.desc}</div>`   : ""}
-
           <div class="card-footer">
-            <div class="card-actions">
-              <a class="card-wa" href="${waLink}" target="_blank">استفسر</a>
-            </div>
-
-            <div class="card-price-wrap">
-              <div class="card-price">${p.price || ""}</div>
-              <div class="card-size">${p.size || ""}</div>
-            </div>
+            <a class="card-wa" href="${waLink}" target="_blank">استفسر</a>
+            <div class="card-price">${p.price || ""}</div>
           </div>
         </div>
       </div>`;
   }).join("");
+
   initLazyLoading();
-  // 👇 مهم جداً: ربط الصور بالـ observer بعد الرندر
-  document.querySelectorAll(".lazy-img").forEach(img => {
-    imageObserver.observe(img);
-  });
+
+  // 👇 زر تحميل المزيد
+  renderLoadMore(products);
+}
+
+function renderLoadMore(products) {
+  let btn = document.getElementById("loadMoreBtn");
+
+  if (!btn) {
+    btn = document.createElement("button");
+    btn.id = "loadMoreBtn";
+    btn.textContent = "تحميل المزيد";
+    btn.style.margin = "20px auto";
+    btn.style.display = "block";
+    document.body.appendChild(btn);
+  }
+
+  if (visibleCount >= products.length) {
+    btn.style.display = "none";
+    return;
+  }
+
+  btn.style.display = "block";
+
+  btn.onclick = () => {
+    visibleCount += LOAD_STEP;
+    renderProducts(products, false);
+  };
 }
 
 // ══════════════════════════════════════════════

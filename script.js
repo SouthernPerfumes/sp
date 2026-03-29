@@ -173,7 +173,7 @@ function renderProducts(products) {
         </div>
       </div>`;
   }).join("");
-
+  initLazyLoading();
   // 👇 مهم جداً: ربط الصور بالـ observer بعد الرندر
   document.querySelectorAll(".lazy-img").forEach(img => {
     imageObserver.observe(img);
@@ -198,3 +198,49 @@ function setSocialLinks() {
   document.querySelectorAll(".js-fb-link").forEach(el => el.href = FACEBOOK_URL);
 }
 setSocialLinks();
+
+// ══════════════════════════════════════════════
+//  8. LAZY LOADING IMAGES
+// ══════════════════════════════════════════════
+
+function initLazyLoading() {
+  const images = document.querySelectorAll(".lazy-img");
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+
+      const img = entry.target;
+      const src = img.getAttribute("data-src");
+
+      if (src) {
+        img.src = src;
+
+        img.onload = () => {
+          img.classList.add("loaded");
+
+          // remove placeholder
+          const placeholder = img.parentElement.querySelector(".img-placeholder");
+          if (placeholder) placeholder.remove();
+        };
+
+        img.onerror = () => {
+          // fallback to emoji
+          const fallback = img.parentElement.querySelector(".card-emoji-fallback");
+          if (fallback) fallback.style.display = "flex";
+
+          const placeholder = img.parentElement.querySelector(".img-placeholder");
+          if (placeholder) placeholder.remove();
+
+          img.remove();
+        };
+      }
+
+      obs.unobserve(img);
+    });
+  }, {
+    rootMargin: "100px"
+  });
+
+  images.forEach(img => observer.observe(img));
+}

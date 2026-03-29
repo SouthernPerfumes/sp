@@ -149,6 +149,11 @@ function renderProducts(products, reset = false) {
         </div>`
       : `<div class="card-emoji-fallback">${p.emoji || "🧴"}</div>`;
 
+    initLazyLoading();
+
+  // 👇 زر تحميل المزيد
+  renderLoadMore(products);
+    
     return `
       <div class="product-card" style="animation-delay:${i * 0.06}s">
         <div class="card-topline"></div>
@@ -165,11 +170,6 @@ function renderProducts(products, reset = false) {
         </div>
       </div>`;
   }).join("");
-
-  initLazyLoading();
-
-  // 👇 زر تحميل المزيد
-  renderLoadMore(products);
 }
 
 function renderLoadMore(products) {

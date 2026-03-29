@@ -5,7 +5,7 @@
 
 // ── CONFIG — Change these to your real details ──
 const WHATSAPP_NUMBER = "201141910181"; // Egypt +20, then number without 0
-const FACEBOOK_URL    = "https://www.facebook.com/people/%D8%B9%D8%B7%D9%88%D8%B1-%D8%A7%D9%84%D8%AC%D9%86%D9%88%D8%A8/100086283819757/";
+const FACEBOOK_URL    = "https://www.facebook.com/people/%D8%B9%D8%B7%D9%88%D8%B1-%D8%A7%D9%84%D8%AC%D9%86%D9%88%D8%A8/100094129415952/";
 // ────────────────────────────────────────────────
 
 const WA_BASE = `https://wa.me/${WHATSAPP_NUMBER}?text=`;

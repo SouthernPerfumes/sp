@@ -20,6 +20,32 @@ let activeCategory = "الكل";
 let searchQuery    = "";
 
 // ══════════════════════════════════════════════
+//  LAZY LOADING OBSERVER (تعريف المراقب مرة واحدة لتحسين الأداء)
+// ══════════════════════════════════════════════
+const imageObserver = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+
+    const img = entry.target;
+    img.src = img.dataset.src;
+
+    // عند نجاح تحميل الصورة
+    img.onload = () => {
+      img.classList.add("loaded");
+    };
+
+    // عند فشل تحميل الصورة (إظهار البديل)
+    img.onerror = () => {
+      const fallback = img.parentElement.querySelector(".card-emoji-fallback");
+      if (fallback) fallback.style.display = "flex";
+      img.remove(); // إزالة الصورة التالفة من الـ DOM
+    };
+
+    obs.unobserve(img); // إيقاف مراقبة الصورة بعد معالجتها
+  });
+}, { rootMargin: "100px" });
+
+// ══════════════════════════════════════════════
 //  LOAD PRODUCTS
 // ══════════════════════════════════════════════
 fetch("products.json")
@@ -101,11 +127,13 @@ function renderProducts(products, reset = false) {
 
   if (reset) {
     visibleCount = 20;
-    grid.innerHTML = ""; // مسح مرة واحدة بس
+    grid.innerHTML = ""; // مسح مرة واحدة
   }
 
   const currentItems = grid.children.length;
   const nextItems = products.slice(currentItems, visibleCount);
+
+  if (nextItems.length === 0) return; // لا يوجد عناصر جديدة لإضافتها
 
   const html = nextItems.map((p, i) => {
     const waMsg  = encodeURIComponent(`السلام عليكم، أريد الاستفسار عن: ${p.name} 🌹`);
@@ -136,31 +164,15 @@ function renderProducts(products, reset = false) {
 }
 
 // ══════════════════════════════════════════════
-//  LAZY LOADING
+//  LAZY LOADING INIT
 // ══════════════════════════════════════════════
 function initLazyLoading() {
-  const images = document.querySelectorAll(".lazy-img");
-/*
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-
-      const img = entry.target;
-      img.src = img.dataset.src;
-
-      img.onload = () => img.classList.add("loaded");
-
-      img.onerror = () => {
-        const fallback = img.parentElement.querySelector(".card-emoji-fallback");
-        if (fallback) fallback.style.display = "flex";
-        img.remove();
-      };
-
-      obs.unobserve(img);
-    });
-  }, { rootMargin: "100px" });
-*/
-  images.forEach(img => observer.observe(img));
+  const images = document.querySelectorAll(".lazy-img:not([data-observed])");
+  
+  images.forEach(img => {
+    imageObserver.observe(img);
+    img.setAttribute('data-observed', 'true'); // تعليم الصورة حتى لا نراقبها مرتين
+  });
 }
 
 // ══════════════════════════════════════════════
@@ -170,17 +182,16 @@ function initInfiniteScroll() {
   let loading = false;
 
   window.addEventListener("scroll", () => {
-
     if (loading) return;
 
-    const nearBottom =
-      window.innerHeight + window.scrollY >= document.body.offsetHeight - 200;
+    // توافقية أفضل مع المتصفحات لحساب التمرير
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+    const nearBottom = scrollTop + clientHeight >= scrollHeight - 200;
 
     if (nearBottom && visibleCount < filteredList.length) {
       loading = true;
-
       visibleCount += LOAD_STEP;
-
+      
       renderProducts(filteredList);
 
       setTimeout(() => loading = false, 300);
@@ -191,10 +202,13 @@ function initInfiniteScroll() {
 // ══════════════════════════════════════════════
 //  SEARCH
 // ══════════════════════════════════════════════
-document.getElementById("searchInput").addEventListener("input", function () {
-  searchQuery = this.value.trim();
-  applyFilters();
-});
+const searchInput = document.getElementById("searchInput");
+if (searchInput) {
+  searchInput.addEventListener("input", function () {
+    searchQuery = this.value.trim();
+    applyFilters();
+  });
+}
 
 // ══════════════════════════════════════════════
 //  SOCIAL LINKS

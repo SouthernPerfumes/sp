@@ -115,7 +115,7 @@ function applyFilters() {
 }
 
 // ══════════════════════════════════════════════
-//  RENDER
+//  RENDER (التعديلات تم تطبيقها هنا)
 // ══════════════════════════════════════════════
 function renderProducts(products, reset = false) {
   const grid    = document.getElementById("productsGrid");
@@ -131,6 +131,8 @@ function renderProducts(products, reset = false) {
         <div class="icon">🔍</div>
         <p>لا توجد نتائج. جرّب البحث بكلمة مختلفة.</p>
       </div>`;
+      
+    renderLoadMore([]); // إخفاء الزر لو مفيش منتجات
     return;
   }
 
@@ -149,11 +151,6 @@ function renderProducts(products, reset = false) {
         </div>`
       : `<div class="card-emoji-fallback">${p.emoji || "🧴"}</div>`;
 
-    initLazyLoading();
-
-  // 👇 زر تحميل المزيد
-  renderLoadMore(products);
-    
     return `
       <div class="product-card" style="animation-delay:${i * 0.06}s">
         <div class="card-topline"></div>
@@ -170,10 +167,15 @@ function renderProducts(products, reset = false) {
         </div>
       </div>`;
   }).join("");
+
+  // استدعاء الدوال خارج حلقة التكرار لتحسين الأداء
+  initLazyLoading();
+  renderLoadMore(products);
 }
 
 function renderLoadMore(products) {
   let btn = document.getElementById("loadMoreBtn");
+  const grid = document.getElementById("productsGrid"); // جلب حاوية العطور
 
   if (!btn) {
     btn = document.createElement("button");
@@ -181,10 +183,12 @@ function renderLoadMore(products) {
     btn.textContent = "تحميل المزيد";
     btn.style.margin = "20px auto";
     btn.style.display = "block";
-    document.body.appendChild(btn);
+    
+    // وضع الزر بعد حاوية العطور مباشرة
+    grid.insertAdjacentElement("afterend", btn);
   }
 
-  if (visibleCount >= products.length) {
+  if (visibleCount >= products.length || products.length === 0) {
     btn.style.display = "none";
     return;
   }
@@ -219,7 +223,6 @@ setSocialLinks();
 // ══════════════════════════════════════════════
 //  8. LAZY LOADING IMAGES
 // ══════════════════════════════════════════════
-
 function initLazyLoading() {
   const images = document.querySelectorAll(".lazy-img");
 
@@ -261,5 +264,3 @@ function initLazyLoading() {
 
   images.forEach(img => observer.observe(img));
 }
-
-انا عايزها تظهر بعد جدول العطور

@@ -569,67 +569,7 @@
   © 2024 &nbsp;<span class="g">عطور الجنوب — Southern Perfumes</span>&nbsp; · القاهرة، مصر · جميع الحقوق محفوظة
 </footer>
 
-<!-- ════════ FAB ════════ -->
-<button class="fab" id="fabBtn" title="إضافة عطر جديد">+</button>
 
-<!-- ════════ MODAL ════════ -->
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal">
-    <button class="modal-close" id="modalClose">✕</button>
-    <p class="modal-tag">إضافة منتج جديد</p>
-    <h2 class="modal-title">عطر جديد</h2>
-    <div class="emoji-preview" id="emojiPreview">🧴</div>
-
-    <div class="form-group">
-      <label class="form-label">أيقونة / إيموجي (اختياري)</label>
-      <input class="form-input" id="fEmoji" type="text" placeholder="مثال: 🌹 🍂 🌊 💎" maxlength="4"/>
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">اسم العطر *</label>
-        <input class="form-input" id="fName" type="text" placeholder="مثال: ليلة القاهرة"/>
-      </div>
-      <div class="form-group">
-        <label class="form-label">الماركة</label>
-        <input class="form-input" id="fBrand" type="text" placeholder="مثال: عطور الجنوب"/>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="form-label">الفئة</label>
-      <select class="form-select" id="fCategory">
-        <option value="عود">عود</option>
-        <option value="مسك">مسك</option>
-        <option value="عنبر">عنبر</option>
-        <option value="بخور">بخور</option>
-        <option value="زيوت">زيوت</option>
-        <option value="شرقي">شرقي</option>
-        <option value="غربي">غربي</option>
-        <option value="رجالي">رجالي</option>
-        <option value="نسائي">نسائي</option>
-        <option value="يونيسكس">يونيسكس</option>
-      </select>
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">السعر</label>
-        <input class="form-input" id="fPrice" type="text" placeholder="مثال: 700 جنيه"/>
-      </div>
-      <div class="form-group">
-        <label class="form-label">الحجم</label>
-        <input class="form-input" id="fSize" type="text" placeholder="مثال: 100ml"/>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="form-label">مسار الصورة (اختياري)</label>
-      <input class="form-input" id="fImage" type="text" placeholder="مثال: images/my-perfume.jpg"/>
-    </div>
-    <div class="form-group">
-      <label class="form-label">الوصف والمكونات</label>
-      <textarea class="form-textarea" id="fDesc" placeholder="مثال: عطر شرقي فاخر يجمع بين العود والمسك…"></textarea>
-    </div>
-    <button class="btn-save" id="saveBtn">إضافة إلى المجموعة</button>
-  </div>
-</div>
 
 <!-- ════════ LOAD script.js LAST ════════ -->
 <script src="script.js"></script>

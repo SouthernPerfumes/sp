@@ -97,25 +97,17 @@ function applyFilters() {
 //  RENDER PRODUCTS
 // ══════════════════════════════════════════════
 function renderProducts(products, reset = false) {
-  const grid    = document.getElementById("productsGrid");
-  const countEl = document.getElementById("resultCount");
+  const grid = document.getElementById("productsGrid");
 
-  if (reset) visibleCount = 20;
-
-  countEl.textContent = products.length ? `${products.length} عطر` : "";
-
-  if (products.length === 0) {
-    grid.innerHTML = `
-      <div class="empty-state">
-        <div class="icon">🔍</div>
-        <p>لا توجد نتائج</p>
-      </div>`;
-    return;
+  if (reset) {
+    visibleCount = 20;
+    grid.innerHTML = ""; // مسح مرة واحدة بس
   }
 
-  const visibleProducts = products.slice(0, visibleCount);
+  const currentItems = grid.children.length;
+  const nextItems = products.slice(currentItems, visibleCount);
 
-  grid.innerHTML = visibleProducts.map((p, i) => {
+  const html = nextItems.map((p, i) => {
     const waMsg  = encodeURIComponent(`السلام عليكم، أريد الاستفسار عن: ${p.name} 🌹`);
     const waLink = WA_BASE + waMsg;
 
@@ -129,20 +121,16 @@ function renderProducts(products, reset = false) {
       : `<div class="card-emoji-fallback">${p.emoji || "🧴"}</div>`;
 
     return `
-      <div class="product-card" style="animation-delay:${i * 0.05}s">
+      <div class="product-card">
         <div class="card-visual">${visual}</div>
         <div class="card-body">
-          <div class="card-cat">${p.category}</div>
           <div class="card-name">${p.name}</div>
-          ${p.brand ? `<div class="card-brand">${p.brand}</div>` : ""}
-          ${p.desc  ? `<div class="card-desc">${p.desc}</div>`   : ""}
-          <div class="card-footer">
-            <a class="card-wa" href="${waLink}" target="_blank">استفسر</a>
-            <div class="card-price">${p.price || ""}</div>
-          </div>
+          <a href="${waLink}" target="_blank">استفسر</a>
         </div>
       </div>`;
   }).join("");
+
+  grid.insertAdjacentHTML("beforeend", html);
 
   initLazyLoading();
 }
@@ -152,7 +140,7 @@ function renderProducts(products, reset = false) {
 // ══════════════════════════════════════════════
 function initLazyLoading() {
   const images = document.querySelectorAll(".lazy-img");
-
+/*
   const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
@@ -171,7 +159,7 @@ function initLazyLoading() {
       obs.unobserve(img);
     });
   }, { rootMargin: "100px" });
-
+*/
   images.forEach(img => observer.observe(img));
 }
 
@@ -179,18 +167,24 @@ function initLazyLoading() {
 //  INFINITE SCROLL (AUTO LOAD)
 // ══════════════════════════════════════════════
 function initInfiniteScroll() {
+  let loading = false;
+
   window.addEventListener("scroll", () => {
+
+    if (loading) return;
 
     const nearBottom =
       window.innerHeight + window.scrollY >= document.body.offsetHeight - 200;
 
-    if (nearBottom) {
-      if (visibleCount < filteredList.length) {
-        visibleCount += LOAD_STEP;
-        renderProducts(filteredList);
-      }
-    }
+    if (nearBottom && visibleCount < filteredList.length) {
+      loading = true;
 
+      visibleCount += LOAD_STEP;
+
+      renderProducts(filteredList);
+
+      setTimeout(() => loading = false, 300);
+    }
   });
 }
 
